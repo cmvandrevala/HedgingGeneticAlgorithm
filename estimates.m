@@ -1,12 +1,14 @@
 clear all
 clc
 
+tic
+
 mu = 0.0003;
-sigma = 0;
-trials = 200;
+sigma = 0.01;
+trials = 300;
 periods = 30;
 
-iterations = 500;
+iterations = 1000;
 weights = rand(20,9);
 
 meanFitness = zeros(1,trials);
@@ -33,7 +35,10 @@ for i = 1:iterations
         newWeights(j,:) = mutation;
     end
     weights = newWeights;
+    i/iterations
 end
+
+toc
 
 [m,indx] = max(fitnesses);
 csvwrite('portfolio.csv', weights(indx,:) / sum(weights(indx,:)))
